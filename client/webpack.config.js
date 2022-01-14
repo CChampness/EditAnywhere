@@ -11,8 +11,7 @@ module.exports = () => {
     mode: 'development',
     entry: {
       main: './src/js/index.js',
-      install: './src/js/install.js'
-    },
+      install: './src/js/install.js'    },
     output: {
       filename: '[name].bundle.js',
       path: path.resolve(__dirname, 'dist'),
@@ -27,7 +26,7 @@ module.exports = () => {
       // Injects our custom service worker
       new InjectManifest({
         swSrc: './src-sw.js',
-        // swDest: 'src-sw.js',
+        swDest: 'src-sw.js',
       }),
 
       // Creates a manifest.json file.
