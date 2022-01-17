@@ -7,7 +7,8 @@ const initdb = async () =>
         console.log('EditAnywhere database already exists');
         return;
       }
-      db.createObjectStore('EditAnywhere', { keyPath: 'id', autoIncrement: true });
+      // db.createObjectStore('EditAnywhere', { keyPath: 'EditedText', autoIncrement: false });
+      db.createObjectStore('EditAnywhere');
       console.log('EditAnywhere database created');
     },
   });
@@ -40,7 +41,8 @@ export const putDb = async (editedText) => {
   const store = tx.objectStore('EditAnywhere');
 
   // Use the .add() method on the store and pass in the content.
-  const request = store.put({ content: editedText });
+  // const request = store.put({ content: editedText });
+  const request = store.put(editedText, "editedText");
 
   // Get confirmation of the request.
   const result = await request;
@@ -56,13 +58,13 @@ export const getDb = async () => {
     const EditAnywhereDb = await openDB('EditAnywhere', 1);
 
     // Create a new transaction and specify the database and data privileges.
-    const tx = EditAnywhereDb.transaction('EditAnywhere', 'readwrite');
+    const tx = EditAnywhereDb.transaction('EditAnywhere', 'readonly');
   
     // Open up the desired object store.
     const store = tx.objectStore('EditAnywhere');
   
     // Use the .getAll() method to get all data in the database.
-    const request = store.getAll();
+    const request = store.get("editedText");
   
     // Get confirmation of the request.
     const result = await request;

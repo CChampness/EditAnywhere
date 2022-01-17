@@ -5,6 +5,7 @@ import { header } from './header';
 export default class {
   constructor() {
     const localData = localStorage.getItem('content');
+    console.log("default class constructor for editor");
 
     // check if CodeMirror is loaded
     if (typeof CodeMirror === 'undefined') {
@@ -23,7 +24,8 @@ export default class {
     });
 
     // When the editor is ready, set the value to whatever is stored in indexeddb.
-    // Fall back to localStorage if nothing is stored in indexeddb, and if neither is available, set the value to header.
+    // Fall back to localStorage if nothing is stored in indexeddb, and if neither is available,
+    //  set the value to header.
     getDb().then((data) => {
       console.info('Loaded data from IndexedDB, injecting into editor');
       this.editor.setValue(data || localData || header);
@@ -39,4 +41,19 @@ export default class {
       putDb(localStorage.getItem('content'));
     });
   }
-}
+};
+
+const fetchEdits = async () => {
+  console.log("fetchEdits");
+  // Grab edit data from IndexedDB
+    const result = await getDb();
+  
+    // Setting editor content innerHTML
+    // console.log("result[30]: ",result[30]);
+    let arrLen = result.value.length;
+    // document.getElementById('main').innerHTML = result.value[arrLen-1].content;
+    document.getElementById('main').innerHTML = result.value;
+};
+
+// Fetch edits upon being loaded.
+fetchEdits();
