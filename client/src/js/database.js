@@ -40,7 +40,7 @@ export const putDb = async (editedText) => {
   // Open up the desired object store.
   const store = tx.objectStore('EditAnywhere');
 
-  // Use the .add() method on the store and pass in the content.
+  // Use the .put() method on the store and pass in the content.
   // const request = store.put({ content: editedText });
   const request = store.put(editedText, "editedText");
 
@@ -68,7 +68,7 @@ export const getDb = async () => {
   
     // Get confirmation of the request.
     const result = await request;
-    console.log('result.value', result);
+    // console.log('result.value', result);
     return result;
 }
 

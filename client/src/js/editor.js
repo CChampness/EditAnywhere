@@ -5,7 +5,6 @@ import { header } from './header';
 export default class {
   constructor() {
     const localData = localStorage.getItem('content');
-    console.log("default class constructor for editor");
 
     // check if CodeMirror is loaded
     if (typeof CodeMirror === 'undefined') {
@@ -14,7 +13,7 @@ export default class {
 
     this.editor = CodeMirror(document.querySelector('#main'), {
       value: '',
-      mode: 'javascript',
+      mode: 'javascript', // Setup for showing javascript syntax highlighting
       theme: 'monokai',
       lineNumbers: true,
       lineWrapping: true,
@@ -43,17 +42,14 @@ export default class {
   }
 };
 
-const fetchEdits = async () => {
-  console.log("fetchEdits");
-  // Grab edit data from IndexedDB
-    const result = await getDb();
+// const fetchEdits = async () => {
+//   console.log("Hitting fetchEdits");
+//   // Grab edit data from IndexedDB
+//     const result = await getDb();
   
-    // Setting editor content innerHTML
-    // console.log("result[30]: ",result[30]);
-    let arrLen = result.value.length;
-    // document.getElementById('main').innerHTML = result.value[arrLen-1].content;
-    document.getElementById('main').innerHTML = result.value;
-};
+//     // Setting editor content innerHTML
+//     document.getElementById('main').innerHTML = result.value;
+// };
 
 // Fetch edits upon being loaded.
-fetchEdits();
+// fetchEdits();
