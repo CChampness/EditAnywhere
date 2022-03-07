@@ -5,7 +5,7 @@ for JavaScript code.
 It is implemented as a Progressive Web App (PWA) such that it can be installed on your
 desktop or on
 a mobile device.  Is uses local storage on the device, both in an IndexedDb database,
-as weel as in LocalStorage.  When the app comes up, it loads any text that has been
+as well as in LocalStorage.  When the app comes up, it loads any text that has been
 saved in the LocalStorage or in the IndexedDb.  Any time the editor loses focus, the
 text is saved to Local Storage and the IndexedDb.  HTML, CSS, and JavaScript for the
 app are all cached so that the app can continue to work while offline.
